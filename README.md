@@ -16,4 +16,4 @@ This project is deployed on GitHub Pages:
 
 - ADD LINK HERE
 
-[GitHub Pages](999 "Link to GitHub Pages")
+[GitHub Pages](https://rose-2357.github.io/se_project_todo-app/ "Link to GitHub Pages")
