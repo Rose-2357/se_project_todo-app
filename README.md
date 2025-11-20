@@ -1,14 +1,21 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+A website for creating to-do lists.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+The website lets you add things to your to-do list, remove them, cross them off, and assign due dates to them.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+The technologies that are used include:
+
+- OOP
+- JavaScript classes
+- Modular JavaScript
+- JavasCript imports and exports
+
+![screenshot of the project](./demo-image.png "to-do list")
 
 ## Deployment
 
