@@ -10,7 +10,7 @@ const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
-const formValidator = new FormValidator(validationConfig, addTodoPopup);
+const formValidator = new FormValidator(validationConfig, addTodoForm);
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
