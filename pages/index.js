@@ -38,14 +38,14 @@ addTodoForm.addEventListener("submit", (evt) => {
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
   const values = { name, date, id: uuidv4() };
-  const todo = new Todo(values, "#todo-template").getView();
+  const todo = new Todo(values, `#${todoTemplate.id}`).getView();
   todosList.append(todo);
   closeModal(addTodoPopup);
   formValidator.resetValidation();
 });
 
 initialTodos.forEach((item) => {
-  const todo = new Todo(item, "#todo-template").getView();
+  const todo = new Todo(item, `#${todoTemplate.id}`).getView();
   todosList.append(todo);
 });
 
