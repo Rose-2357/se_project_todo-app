@@ -2,6 +2,7 @@ import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -38,19 +39,26 @@ addTodoForm.addEventListener("submit", (evt) => {
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
   const values = { name, date, id: uuidv4() };
-  const todo = new Todo(values, `#${todoTemplate.id}`).getView();
-  addTodo(todo);
+  const newTodo = new Section({
+    items: [values],
+    renderer: () => {
+      return new Todo(values, `#${todoTemplate.id}`).getView();
+    },
+    containerSelector: ".todos__list",
+  });
+  newTodo.renderItems();
   closeModal(addTodoPopup);
   formValidator.resetValidation();
 });
 
-initialTodos.forEach((item) => {
-  const todo = new Todo(item, `#${todoTemplate.id}`).getView();
-  addTodo(todo);
+const initialTodoList = new Section({
+  items: initialTodos,
+  renderer: (item) => {
+    return new Todo(item, `#${todoTemplate.id}`).getView();
+  },
+  containerSelector: ".todos__list",
 });
 
-function addTodo(todo) {
-  todosList.append(todo);
-}
+initialTodoList.renderItems();
 
 formValidator.enableValidation();
