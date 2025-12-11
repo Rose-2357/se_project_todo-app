@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import TodoCounter from "../components/TodoCounter.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -13,6 +14,8 @@ const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
 const formValidator = new FormValidator(validationConfig, addTodoForm);
+
+const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
 const todoPopupWithForm = new PopupWithForm(
   "#add-todo-popup",
@@ -35,6 +38,7 @@ const todoPopupWithForm = new PopupWithForm(
     newTodo.renderItems();
     todoPopupWithForm.close();
     formValidator.resetValidation();
+    todoCounter.updateTotal(true);
   }
 );
 
@@ -44,6 +48,19 @@ addTodoButton.addEventListener("click", () => {
 
 addTodoCloseBtn.addEventListener("click", () => {
   todoPopupWithForm.close();
+});
+
+todosList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("todo__completed")) {
+    todoCounter.updateCompleted(e.target.checked);
+  }
+
+  if (e.target.classList.contains("todo__delete-btn")) {
+    todoCounter.updateTotal(false);
+    if (e.target.closest(".todo").querySelector(".todo__completed").checked) {
+      todoCounter.updateCompleted(false);
+    }
+  }
 });
 
 const initialTodoList = new Section({
