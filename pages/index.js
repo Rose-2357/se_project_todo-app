@@ -50,10 +50,6 @@ addTodoButton.addEventListener("click", () => {
   todoPopupWithForm.open();
 });
 
-addTodoCloseBtn.addEventListener("click", () => {
-  todoPopupWithForm.close();
-});
-
 todosList.addEventListener("click", (e) => {
   if (e.target.classList.contains("todo__completed")) {
     todoCounter.updateCompleted(e.target.checked);
