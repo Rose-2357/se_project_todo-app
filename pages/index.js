@@ -31,7 +31,11 @@ const todoPopupWithForm = new PopupWithForm(
     const newTodo = new Section({
       items: [values],
       renderer: () => {
-        return new Todo(values, `#${todoTemplate.id}`).getView();
+        return new Todo(values, `#${todoTemplate.id}`, (wasCompleted) => {
+          if (wasCompleted) {
+            todoCounter.updateCompleted(false);
+          }
+        }).getView();
       },
       containerSelector: ".todos__list",
     });
@@ -57,16 +61,17 @@ todosList.addEventListener("click", (e) => {
 
   if (e.target.classList.contains("todo__delete-btn")) {
     todoCounter.updateTotal(false);
-    if (e.target.closest(".todo").querySelector(".todo__completed").checked) {
-      todoCounter.updateCompleted(false);
-    }
   }
 });
 
 const initialTodoList = new Section({
   items: initialTodos,
   renderer: (item) => {
-    return new Todo(item, `#${todoTemplate.id}`).getView();
+    return new Todo(item, `#${todoTemplate.id}`, (wasCompleted) => {
+      if (wasCompleted) {
+        todoCounter.updateCompleted(false);
+      }
+    }).getView();
   },
   containerSelector: ".todos__list",
 });

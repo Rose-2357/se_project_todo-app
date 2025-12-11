@@ -1,5 +1,5 @@
 export default class Todo {
-  constructor(data, selector) {
+  constructor(data, selector, handleDelete) {
     this._data = data;
     this._element = document
       .querySelector(selector)
@@ -10,10 +10,14 @@ export default class Todo {
     this._label = this._element.querySelector(".todo__label");
     this._date = this._element.querySelector(".todo__date");
     this._deleteBtn = this._element.querySelector(".todo__delete-btn");
+    this._handleDelete = handleDelete;
   }
 
   _setEventListeners() {
     this._deleteBtn.addEventListener("click", () => {
+      const wasCompleted =
+        this._element.querySelector(".todo__completed").checked;
+      this._handleDelete(wasCompleted);
       this._element.remove();
     });
   }
