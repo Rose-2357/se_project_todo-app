@@ -24,3 +24,7 @@ This project is deployed on GitHub Pages:
 - ADD LINK HERE
 
 [GitHub Pages](https://rose-2357.github.io/se_project_todo-app/ "Link to GitHub Pages")
+
+# TO-DO
+
+- fix keydownhandler func
