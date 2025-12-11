@@ -1,7 +1,6 @@
 export default class Todo {
   constructor(data, selector) {
     this._data = data;
-    this._selector = selector;
     this._element = document
       .querySelector(selector)
       .content.querySelector(".todo")
