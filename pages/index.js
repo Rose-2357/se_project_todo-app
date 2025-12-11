@@ -28,7 +28,7 @@ const todoPopupWithForm = new PopupWithForm(
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
     const values = { name, date, id: uuidv4() };
-    const newTodo = new Section({
+    const newTodoSection = new Section({
       items: [values],
       renderer: () => {
         return new Todo(values, `#${todoTemplate.id}`, (wasCompleted) => {
@@ -39,7 +39,7 @@ const todoPopupWithForm = new PopupWithForm(
       },
       containerSelector: ".todos__list",
     });
-    newTodo.renderItems();
+    newTodoSection.renderItems();
     todoPopupWithForm.close();
     formValidator.resetValidation();
     todoCounter.updateTotal(true);
